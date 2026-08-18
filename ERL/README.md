@@ -14,6 +14,8 @@ Level, ERL）新协议。它与工作区中既有 ERL、DRRL、可靠性评分�
 ## 文件
 
 - [`ERL_EVALUATION_PROTOCOL.md`](ERL_EVALUATION_PROTOCOL.md)：完整评价协议。
+- [`TARGET_ENGINEERING_CASE_ANNOTATION_REQUIREMENTS.md`](TARGET_ENGINEERING_CASE_ANNOTATION_REQUIREMENTS.md)：
+  用于 ERL 阈值开发和独立预测效度验证的目标工程案例标注要求。
 - [`calculation_dictionaries/CLUSTER_A_2D_DEFECT_CALCULATION_DICTIONARY.md`](calculation_dictionaries/CLUSTER_A_2D_DEFECT_CALCULATION_DICTIONARY.md)：
   二维基础设施病害影像。
 - [`calculation_dictionaries/CLUSTER_B_RGBT_CALCULATION_DICTIONARY.md`](calculation_dictionaries/CLUSTER_B_RGBT_CALCULATION_DICTIONARY.md)：

@@ -21,6 +21,7 @@ DRRL/
 ERL/
 ├── README.md
 ├── ERL_EVALUATION_PROTOCOL.md
+├── TARGET_ENGINEERING_CASE_ANNOTATION_REQUIREMENTS.md
 └── calculation_dictionaries/
     ├── CLUSTER_A_2D_DEFECT_CALCULATION_DICTIONARY.md
     ├── CLUSTER_B_RGBT_CALCULATION_DICTIONARY.md
@@ -42,6 +43,7 @@ ERL/
 
 - [ERL archive guide](ERL/README.md)
 - [ERL evaluation protocol](ERL/ERL_EVALUATION_PROTOCOL.md)
+- [ERL target engineering case annotation requirements](ERL/TARGET_ENGINEERING_CASE_ANNOTATION_REQUIREMENTS.md)
 - [Cluster A calculation dictionary](ERL/calculation_dictionaries/CLUSTER_A_2D_DEFECT_CALCULATION_DICTIONARY.md)
 - [Cluster B calculation dictionary](ERL/calculation_dictionaries/CLUSTER_B_RGBT_CALCULATION_DICTIONARY.md)
 - [Cluster C calculation dictionary](ERL/calculation_dictionaries/CLUSTER_C_3D_POINT_CLOUD_CALCULATION_DICTIONARY.md)
@@ -97,4 +99,3 @@ The protocol documentation in this repository is licensed under the [Creative Co
 - **ERL（面向工程域迁移的数据集工程成熟度等级）**：在不使用目标工程案例计算等级的前提下，评价源数据集在预定义工程应用范围内的迁移潜力。
 
 DRRL 不预测 zero-shot 工程表现；ERL 不评价许可、下载、文档和第三方接入成本。当前协议中的待校准参数不能在缺乏开发集和独立验证集证据时被任意设定。
-
