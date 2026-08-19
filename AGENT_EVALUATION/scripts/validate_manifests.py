@@ -80,7 +80,7 @@ def validate_completion(payload: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     components = payload.get("components", {})
     if set(components) != COMPONENTS:
-        errors.append("completion manifest must contain exactly seven component gates")
+        errors.append("completion manifest must contain exactly nine component gates")
     for name, component in components.items():
         if component.get("status") != "COMPLETE":
             continue

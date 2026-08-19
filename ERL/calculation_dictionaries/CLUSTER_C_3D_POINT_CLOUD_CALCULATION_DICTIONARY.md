@@ -3,7 +3,7 @@
 ## 1. 适用范围
 
 本字典适用于三维城市或基础设施点云的语义分割、目标识别、变化检测或工程测量。
-不同任务必须分别冻结应用范围，不能用场景语义分割 ERL 代表三维病害检测、变化
+不同任务必须分别冻结应用范围，不得用场景语义分割 ERL 代表三维病害检测、变化
 检测或几何测量成熟度。
 
 当前优先操作化任务为室外点云语义分割，候选共同语义包括：
@@ -38,7 +38,7 @@
 8. 官方或重建的训练/验证划分；
 9. 标注质量与几何一致性审计结果。
 
-本字典继承总体协议的全部通用判据。C1.4 由数据清单、版本标识和内容哈希直接
+本字典沿用总体协议的全部通用判据。C1.4 由数据清单、版本标识和内容哈希直接
 裁决，不另造数值指标；坐标、单位、配准和运动畸变判据按冻结的任务范围确定
 适用性。
 
@@ -47,7 +47,7 @@
 ### 4.1 统一坐标与单位
 
 所有几何指标在统一的物理长度单位下计算。无法确认单位、坐标顺序或参考系时，
-依赖实际尺度的指标全部记为 `UNKNOWN`。不得仅凭坐标数值大小猜测米、厘米或毫米。
+依赖物理尺度的指标全部记为 `UNKNOWN`。不得仅凭坐标数值大小猜测长度单位（米、厘米或毫米）。
 
 ### 4.2 空间支持单元
 
@@ -120,7 +120,7 @@ FGER_C=\frac{N_{audited\ SSU\ with\ fatal\ geometry/label\ error}}{N_{audited\ S
 - `unit_inferred_not_verified`；
 - `unknown`。
 
-同时记录 EPSG/局部坐标定义、轴向、原点、长度单位和转换链。依赖实际尺度的任务
+同时记录 EPSG/局部坐标定义、轴向、原点、长度单位和转换链。依赖物理尺度的任务
 要求前两类之一。判据：C1.3。
 
 ### C-P2 尺度一致性误差
@@ -151,7 +151,7 @@ CAER_C=\frac{N_{audited\ SSU\ with\ critical\ annotation\ defect}}{N_{audited\ S
 OMR_C=\frac{N_{gold\ objects/regions\ absent\ from\ released\ labels}}{N_{gold\ objects/regions}}
 \]
 
-对象形成规则和最小可审计尺寸预先冻结。仅比较点级多数标签不足以发现整对象漏标。
+对象形成规则和最小可审计尺寸预先冻结。仅比较点级多数标签不足以发现整个对象的漏标。
 判据：C2.1。
 
 ### C-A3 边界混淆率
@@ -203,7 +203,7 @@ Leak_C=N_{spatial\ overlap,scene,survey\ groups\ spanning\ train\ and\ validatio
 \]
 
 分别报告相同点、重叠 SSU、同一连续测区和同一测量批次泄漏。确认的相同点或重叠
-区域泄漏属于硬失败候选。判据：C2.4a。
+区域泄漏属于关键失败候选。判据：C2.4a。
 
 ### C-E1 非重叠空间有效覆盖
 
@@ -318,7 +318,7 @@ ShortcutRatio_C=\frac{P_{simple\ acquisition\ features}}{P_{full\ geometry}+\eps
 
 探针、采样和预算预先冻结。判据：C4.1、C4.5。
 
-### C-RB1 留一测区/批次/传感器保留率
+### C-RB1 留一测区/批次/传感器保持率
 
 \[
 Retention_{C,u}=\frac{P_{heldout\ ICU=u}}{P_{source\ random\ reference}+\epsilon}

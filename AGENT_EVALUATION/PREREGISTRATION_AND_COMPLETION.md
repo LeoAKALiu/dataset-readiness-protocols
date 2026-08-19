@@ -1,4 +1,4 @@
-# 预登记、变更控制与完成规范
+# 预注册、变更控制与完成规范
 
 ## 1. 两阶段协议锁定
 
@@ -30,7 +30,7 @@
 [`schemas/protocol-lock.schema.json`](schemas/protocol-lock.schema.json)，模型面板格式见
 [`schemas/panel-manifest.schema.json`](schemas/panel-manifest.schema.json)。
 
-## 2. GitHub 预登记
+## 2. GitHub 预注册
 
 正式实验启动前，在公开仓库创建带日期的 Git tag 或 GitHub release。release 应
 包括 `protocol_lock.json`、所有非敏感 manifest、选择清单和 commit。阶段 0 输出
@@ -65,7 +65,7 @@
 8. 等级输出及哈希。
 
 恢复时先对账已提交的事件和内容哈希，禁止重复提交已完成证据或改变
-`replicate_id`。运行维护记录必须单独保存，不得与评分文件合并。
+`replicate_id`。运行维护记录必须单独保存，不得与评价结果文件合并。
 
 ## 5. 组件完成判据
 
@@ -78,7 +78,7 @@
 | `ERL_AGENT_AUDIT_COMPLETE` | \(N_{EA}\) 个可评 ERL 代表性单元的五组双 Agent 证据评价流程完成 |
 | `DRRL_REPEAT_AUDIT_COMPLETE` | 16 个家族的五组 DRRL 评价流程第二次执行完成 |
 | `ERL_REPEAT_AUDIT_COMPLETE` | \(N_{ER}\) 个可评 ERL 代表性单元的五组评价流程第二次执行完成 |
-| `HUMAN_REFERENCE_COMPLETE` | 双人盲审、负责人裁决和人工参考结果锁定完成 |
+| `HUMAN_REFERENCE_COMPLETE` | 双人盲化复核、负责人裁决和人工参考结果锁定完成 |
 | `ANALYSIS_COMPLETE` | 统计输入、代码、环境和结果哈希一致 |
 
 仅当所有必填字段均达到合法终态，且不存在 `RUN_INCOMPLETE`、待重试或待核验项时，相应组件方可

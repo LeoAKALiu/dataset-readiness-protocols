@@ -101,7 +101,7 @@ common_system_contract
 - `REJECTED`
 - `UNRESOLVED_AFTER_REVIEW`
 
-不得输出最终 DRRL/ERL，也不得按模型数量、模型品牌或置信度自报值投票。
+不得输出最终 DRRL/ERL 等级，也不得按模型数量、模型品牌或置信度自报值进行多数表决。
 
 ## 6. 确定性标准化契约
 
@@ -131,7 +131,7 @@ common_system_contract
 - 将“没有找到”直接写成“数据集不存在”；
 - 把服务失败写成 `ACCESS_BLOCKED`；
 - 把候选证据 `REJECTED` 直接映射为协议 FAIL；
-- 通过运行诊断输出修改正式评分文件；
+- 通过运行诊断输出修改正式评价结果文件；
 - 把其他 Agent 的已知结论放入独立重复上下文。
 
 ## 8. 访问障碍专项核验规则
@@ -149,7 +149,7 @@ common_system_contract
 
 ## 9. Agent 输出与确定性判定程序的隔离
 
-Agent 输出中禁止出现 `verified_drrl`、`verified_erl`、最终 PASS/FAIL 门级和加权分数。
+Agent 输出中禁止出现 `verified_drrl`、`verified_erl`、最终 PASS/FAIL 判定和加权分数。
 确定性判定程序仅接收合法终态证据、确定性指标计算结果、适用性规则和预先固定的阈值。
 
 主评价流程、审计评价流程、重复评价流程和敏感性分析证据分别使用：

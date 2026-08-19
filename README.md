@@ -1,9 +1,9 @@
 # Dataset Readiness Protocols
 
-Public working archive for two complementary dataset assessment protocols:
+Public working archive for two independent and composable dataset assessment protocols:
 
-- **DRRL — Dataset Reuse Readiness Level:** whether an independent third party can acquire, understand, verify, and integrate a specified dataset release with controlled avoidable friction.
-- **ERL — Engineering Readiness Level:** the prospective engineering-domain transfer potential of a source dataset within a predefined application envelope, assessed before target engineering cases are used.
+- **DRRL — Dataset Reuse Readiness Level:** whether an independent third party can reuse a specified dataset release with low barriers and verifiable outcomes within a declared reuse scope.
+- **ERL — Engineering Readiness Level:** a pre-target-case assessment of a source dataset's zero-shot engineering-domain transfer potential within a predefined application envelope, based solely on observable source-dataset evidence.
 
 DRRL and ERL are independent axes. DRRL does not predict zero-shot engineering performance, and ERL does not measure licensing, download, documentation, or third-party integration effort.
 
@@ -73,7 +73,7 @@ AGENT_EVALUATION/
 - [Alias and version map](evidence_maps/2026-08-19-deepresearch-merge/ALIAS_VERSION_MAP.csv)
 - [Conflict verification record](evidence_maps/2026-08-19-deepresearch-merge/CONFLICT_VERIFICATION.md)
 
-### Multi-Agent evaluation experiment
+### Multi-agent evaluation experiment
 
 - [Agent experiment archive guide](AGENT_EVALUATION/README.md)
 - [Complete AI Agent evaluation protocol](AGENT_EVALUATION/AI_AGENT_EVALUATION_PROTOCOL.md)
@@ -98,7 +98,7 @@ These documents define the current constructs, boundaries, cumulative level logi
 - ERL empirical thresholds remain to be calibrated on development datasets and tested on independent validation datasets.
 - DRRL friction thresholds and independent reuse-validity criteria remain to be calibrated.
 - No dataset should be described as formally re-rated solely because the protocol documents exist.
-- The Agent experiment package is a pre-Stage-0 candidate. It is not the formal preregistration lock until the Stage 0 compatibility run is complete and a dated GitHub tag/release is published.
+- The Agent experiment package is a pre-Stage-0 candidate. It is not the formal preregistration lock until the Stage 0 feasibility run is complete and a dated GitHub tag/release is published.
 
 The Chinese Markdown documents are the normative working texts in this repository. The English content in this README is an orientation summary.
 
@@ -129,7 +129,7 @@ The protocol documentation in this repository is licensed under the [Creative Co
 
 本仓库公开维护两套相互独立、可组合使用的数据集评价协议：
 
-- **DRRL（数据集复用就绪等级）**：评价独立第三方能否在指定复用范围内，以受控的可避免摩擦完成数据集获取、理解、核验和接入。
-- **ERL（面向工程域迁移的数据集工程成熟度等级）**：在不使用目标工程案例计算等级的前提下，评价源数据集在预定义工程应用范围内的迁移潜力。
+- **DRRL（数据集复用就绪等级）**：对于指定的数据集发布版本和复用范围，评价独立第三方能否低障碍、可核验地完成数据复用。
+- **ERL（面向工程域迁移的数据集工程成熟度等级）**：在目标工程案例出现前，仅依据源数据集自身的可观察证据，评价其在预定义工程应用范围内的 zero-shot 工程域迁移潜力；目标工程案例仅用于后续预测效度验证，不参与等级计算。
 
 DRRL 不预测 zero-shot 工程表现；ERL 不评价许可、下载、文档和第三方接入成本。当前协议中的待校准参数不能在缺乏开发集和独立验证集证据时被任意设定。
