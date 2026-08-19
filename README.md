@@ -35,6 +35,15 @@ evidence_maps/
     ├── ALIAS_VERSION_MAP.csv
     ├── CONFLICT_VERIFICATION.md
     └── build_registry.py
+
+AGENT_EVALUATION/
+├── AI_AGENT_EVALUATION_PROTOCOL.md
+├── STAGE_0_RUNBOOK.md
+├── PROMPT_AND_EVIDENCE_CONTRACT.md
+├── AUDIT_AND_ANALYSIS_PLAN.md
+├── PREREGISTRATION_AND_COMPLETION.md
+├── schemas/
+└── scripts/
 ```
 
 ## Protocols
@@ -64,6 +73,15 @@ evidence_maps/
 - [Alias and version map](evidence_maps/2026-08-19-deepresearch-merge/ALIAS_VERSION_MAP.csv)
 - [Conflict verification record](evidence_maps/2026-08-19-deepresearch-merge/CONFLICT_VERIFICATION.md)
 
+### Multi-Agent evaluation experiment
+
+- [Agent experiment archive guide](AGENT_EVALUATION/README.md)
+- [Complete AI Agent evaluation protocol](AGENT_EVALUATION/AI_AGENT_EVALUATION_PROTOCOL.md)
+- [Stage 0 runbook](AGENT_EVALUATION/STAGE_0_RUNBOOK.md)
+- [Prompt and evidence contract](AGENT_EVALUATION/PROMPT_AND_EVIDENCE_CONTRACT.md)
+- [Audit and analysis plan](AGENT_EVALUATION/AUDIT_AND_ANALYSIS_PLAN.md)
+- [Preregistration and completion specification](AGENT_EVALUATION/PREREGISTRATION_AND_COMPLETION.md)
+
 ## Cluster definitions
 
 | Cluster | Scope |
@@ -80,6 +98,7 @@ These documents define the current constructs, boundaries, cumulative level logi
 - ERL empirical thresholds remain to be calibrated on development datasets and tested on independent validation datasets.
 - DRRL friction thresholds and independent reuse-validity criteria remain to be calibrated.
 - No dataset should be described as formally re-rated solely because the protocol documents exist.
+- The Agent experiment package is a pre-Stage-0 candidate. It is not the formal preregistration lock until the Stage 0 compatibility run is complete and a dated GitHub tag/release is published.
 
 The Chinese Markdown documents are the normative working texts in this repository. The English content in this README is an orientation summary.
 

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LeoAKALiu/dataset-readiness-protocols/main/AGENT_EVALUATION/schemas/completion-manifest.schema.json",
+  "title": "DRRL/ERL Agent study completion manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_lock_id",
+    "panel_id",
+    "run_id",
+    "overall_status",
+    "components",
+    "namespace_hashes",
+    "unresolved_after_review",
+    "run_incomplete",
+    "input_sha256",
+    "output_sha256",
+    "code_sha256",
+    "environment_sha256",
+    "generated_at"
+  ],
+  "properties": {
+    "protocol_lock_id": {"type": "string", "minLength": 1},
+    "panel_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "overall_status": {"enum": ["NOT_STARTED", "IN_PROGRESS", "PAUSED_INCOMPLETE", "COMPLETE"]},
+    "components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "DRRL_PRIMARY_COMPLETE",
+        "ERL_ELIGIBILITY_COMPLETE",
+        "ERL_PRIMARY_COMPLETE",
+        "DRRL_AGENT_AUDIT_COMPLETE",
+        "ERL_AGENT_AUDIT_COMPLETE",
+        "DRRL_REPEAT_AUDIT_COMPLETE",
+        "ERL_REPEAT_AUDIT_COMPLETE",
+        "HUMAN_REFERENCE_COMPLETE",
+        "ANALYSIS_COMPLETE"
+      ],
+      "properties": {
+        "DRRL_PRIMARY_COMPLETE": {"$ref": "#/$defs/component"},
+        "ERL_ELIGIBILITY_COMPLETE": {"$ref": "#/$defs/component"},
+        "ERL_PRIMARY_COMPLETE": {"$ref": "#/$defs/component"},
+        "DRRL_AGENT_AUDIT_COMPLETE": {"$ref": "#/$defs/component"},
+        "ERL_AGENT_AUDIT_COMPLETE": {"$ref": "#/$defs/component"},
+        "DRRL_REPEAT_AUDIT_COMPLETE": {"$ref": "#/$defs/component"},
+        "ERL_REPEAT_AUDIT_COMPLETE": {"$ref": "#/$defs/component"},
+        "HUMAN_REFERENCE_COMPLETE": {"$ref": "#/$defs/component"},
+        "ANALYSIS_COMPLETE": {"$ref": "#/$defs/component"}
+      }
+    },
+    "namespace_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["DRRL", "ERL"],
+      "properties": {
+        "DRRL": {"$ref": "#/$defs/protocol_namespaces"},
+        "ERL": {"$ref": "#/$defs/protocol_namespaces"}
+      }
+    },
+    "unresolved_after_review": {"type": "integer", "minimum": 0},
+    "run_incomplete": {"type": "integer", "minimum": 0},
+    "input_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "output_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "code_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "environment_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "generated_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"overall_status": {"const": "COMPLETE"}},
+        "required": ["overall_status"]
+      },
+      "then": {
+        "properties": {
+          "run_incomplete": {"const": 0},
+          "components": {
+            "properties": {
+              "DRRL_PRIMARY_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "ERL_ELIGIBILITY_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "ERL_PRIMARY_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "DRRL_AGENT_AUDIT_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "ERL_AGENT_AUDIT_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "DRRL_REPEAT_AUDIT_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "ERL_REPEAT_AUDIT_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "HUMAN_REFERENCE_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}},
+              "ANALYSIS_COMPLETE": {"properties": {"status": {"const": "COMPLETE"}}}
+            }
+          },
+          "namespace_hashes": {
+            "properties": {
+              "DRRL": {"$ref": "#/$defs/complete_protocol_namespaces"},
+              "ERL": {"$ref": "#/$defs/complete_protocol_namespaces"}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "protocol_namespaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "audit", "repeat", "sensitivity"],
+      "properties": {
+        "primary": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "audit": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "repeat": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "sensitivity": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "complete_protocol_namespaces": {
+      "type": "object",
+      "properties": {
+        "primary": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "audit": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "repeat": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "expected", "completed", "terminal", "incomplete", "content_sha256"],
+      "properties": {
+        "status": {"enum": ["NOT_STARTED", "IN_PROGRESS", "PAUSED_INCOMPLETE", "COMPLETE", "NOT_APPLICABLE"]},
+        "expected": {"type": "integer", "minimum": 0},
+        "completed": {"type": "integer", "minimum": 0},
+        "terminal": {"type": "integer", "minimum": 0},
+        "incomplete": {"type": "integer", "minimum": 0},
+        "content_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "COMPLETE"}}, "required": ["status"]},
+          "then": {"properties": {"content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}
+        }
+      ]
+    }
+  }
+}

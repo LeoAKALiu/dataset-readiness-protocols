@@ -137,6 +137,32 @@ ERL(D\mid\Omega_1)\neq ERL(D\mid\Omega_2)
 关键数据属性原则上必须达到 Q3。LLM 可以辅助提取和组织证据，但 LLM 判断本身
 不构成 Q3 证据。
 
+Q3—Q0 表示证据的直接性和可复核性，不是一套适用于所有字段的单一来源排名。
+发生冲突时还必须按字段采用相应权威来源：
+
+- 许可仅用于确认数据取得是否合法，不进入 ERL 判级；相应事实以正式许可或数据
+  使用协议为准；
+- 文件规模、内容和标注以实际发布物、冻结清单和直接计算为准；
+- 版本和发布身份以官方版本记录、归档或 DOI 为准；
+- 任务语义和采集协议以对应版本的官方数据卡、规范或原始论文为准；
+- 论文身份以出版方和 DOI 注册记录为准。
+
+同等质量、同等字段权威性的来源仍冲突时保留 `CONFLICT`，不得按来源数量、
+Agent 数量或模型自报置信度表决。
+
+采用多 Agent 证据流水线时，其证据状态不新增或替代本协议的判据状态：
+
+- `ACCEPTED` 证据由确定性规则引擎根据内容支持 `PASS` 或 `FAIL`；
+- `REJECTED` 只淘汰候选证据，不直接等于 `FAIL`；
+- `NOT_EVIDENCED` 映射为 `UNKNOWN`；
+- `NOT_APPLICABLE` 映射为 `NA`；
+- `UNRESOLVED_AFTER_REVIEW` 映射为 `CONFLICT`；
+- 资产 `ACCESS_BLOCKED` 时输出 `UNRATED`/`NOT_EVALUATED`，不得映射为低 ERL；
+- `RUN_INCOMPLETE` 不得进入评级。
+
+Agent 实验的角色、盲核验、确定性计算和完成规则见
+[`../AGENT_EVALUATION/AI_AGENT_EVALUATION_PROTOCOL.md`](../AGENT_EVALUATION/AI_AGENT_EVALUATION_PROTOCOL.md)。
+
 ## 8. 判据状态
 
 | 状态 | 定义 |

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LeoAKALiu/dataset-readiness-protocols/main/AGENT_EVALUATION/schemas/evidence-packet.schema.json",
+  "title": "DRRL/ERL Agent evidence packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packet_id",
+    "protocol_lock_id",
+    "run_id",
+    "replicate_id",
+    "namespace",
+    "evaluation_unit",
+    "protocol",
+    "field_id",
+    "role",
+    "model_slot",
+    "raw_value",
+    "normalized_value",
+    "unit",
+    "statistical_object",
+    "applicability",
+    "sources",
+    "evidence_quality",
+    "authority_scope",
+    "proposal_origin",
+    "comparison_result",
+    "verification_state",
+    "terminal_reason",
+    "parent_packet_ids",
+    "created_at"
+  ],
+  "properties": {
+    "packet_id": {"type": "string", "minLength": 1},
+    "protocol_lock_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "replicate_id": {"type": "string", "minLength": 1},
+    "namespace": {
+      "enum": ["primary", "audit", "repeat", "sensitivity", "stage0"]
+    },
+    "evaluation_unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family_key", "release_key", "evaluation_unit_id", "cluster"],
+      "properties": {
+        "family_key": {"type": "string", "minLength": 1},
+        "release_key": {"type": "string", "minLength": 1},
+        "evaluation_unit_id": {"type": "string", "minLength": 1},
+        "cluster": {"enum": ["A", "B", "C", "D"]},
+        "task": {"type": ["string", "null"]},
+        "application_envelope_id": {"type": ["string", "null"]}
+      }
+    },
+    "protocol": {"enum": ["DRRL", "ERL"]},
+    "field_id": {"type": "string", "minLength": 1},
+    "role": {"enum": ["RETRIEVER", "VERIFIER", "THIRD_REVIEWER", "METRIC_RUNNER"]},
+    "model_slot": {"enum": ["P1", "P2", "P3", "P4", "P5", "DETERMINISTIC"]},
+    "raw_value": {},
+    "normalized_value": {},
+    "unit": {"type": ["string", "null"]},
+    "statistical_object": {"type": ["string", "null"]},
+    "applicability": {"enum": ["APPLICABLE", "NOT_APPLICABLE", "UNDETERMINED"]},
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "evidence_quality": {"enum": ["Q0", "Q1", "Q2", "Q3"]},
+    "authority_scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": ["license", "release_identity", "artifact_contents", "task_semantics", "collection_protocol", "bibliographic_identity", "execution_result", "other"]
+      },
+      "uniqueItems": true
+    },
+    "proposal_origin": {"enum": ["PROPOSED_BY_RETRIEVER", "PROPOSED_BY_VERIFIER", "DETERMINISTIC_MEASUREMENT"]},
+    "comparison_result": {"enum": ["NOT_RUN", "MATCH", "MISMATCH", "NOT_COMPARABLE"]},
+    "verification_state": {
+      "enum": [
+        "PENDING_VERIFICATION",
+        "ACCEPTED",
+        "REJECTED",
+        "NOT_EVIDENCED",
+        "NOT_APPLICABLE",
+        "ACCESS_BLOCKED",
+        "UNRESOLVED_AFTER_REVIEW"
+      ]
+    },
+    "terminal_reason": {"type": ["string", "null"]},
+    "parent_packet_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"verification_state": {"const": "ACCEPTED"}},
+        "required": ["verification_state"]
+      },
+      "then": {
+        "properties": {
+          "applicability": {"const": "APPLICABLE"},
+          "evidence_quality": {"enum": ["Q1", "Q2", "Q3"]},
+          "sources": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"verification_state": {"const": "NOT_EVIDENCED"}},
+        "required": ["verification_state"]
+      },
+      "then": {
+        "properties": {"evidence_quality": {"const": "Q0"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"verification_state": {"const": "NOT_APPLICABLE"}},
+        "required": ["verification_state"]
+      },
+      "then": {
+        "properties": {"applicability": {"const": "NOT_APPLICABLE"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"verification_state": {"const": "ACCESS_BLOCKED"}},
+        "required": ["verification_state"]
+      },
+      "then": {
+        "properties": {"sources": {"minItems": 1}}
+      }
+    }
+  ],
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "normalized_url", "accessed_at", "source_type", "locator", "excerpt", "content_sha256", "http_status", "cache_ref"],
+      "properties": {
+        "url": {"type": "string", "format": "uri"},
+        "normalized_url": {"type": ["string", "null"], "format": "uri"},
+        "accessed_at": {"type": "string", "format": "date-time"},
+        "source_type": {"type": "string", "minLength": 1},
+        "locator": {"type": "string", "minLength": 1},
+        "excerpt": {"type": "string"},
+        "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "http_status": {"type": ["integer", "null"], "minimum": 100, "maximum": 599},
+        "cache_ref": {"type": ["string", "null"]},
+        "untrusted_instruction_detected": {"type": "boolean", "default": false}
+      }
+    }
+  }
+}

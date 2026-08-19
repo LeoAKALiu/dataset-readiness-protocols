@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LeoAKALiu/dataset-readiness-protocols/main/AGENT_EVALUATION/schemas/panel-manifest.schema.json",
+  "title": "Pi Agent OAuth model panel manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["panel_id", "pi_agent", "tool_registry_sha256", "prompt_manifest_sha256", "models", "created_at"],
+  "properties": {
+    "panel_id": {"type": "string", "minLength": 1},
+    "pi_agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version_or_commit", "config_sha256", "adapter_manifest_sha256"],
+      "properties": {
+        "version_or_commit": {"type": "string", "minLength": 1},
+        "config_sha256": {"$ref": "#/$defs/sha256"},
+        "adapter_manifest_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "tool_registry_sha256": {"$ref": "#/$defs/sha256"},
+    "prompt_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "models": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slot", "provider", "model_id", "display_name", "route_id", "invocation_mode", "adapter_version", "account_tier", "exposed_parameters", "provider_managed_parameters"],
+        "properties": {
+          "slot": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
+          "provider": {"type": "string", "minLength": 1},
+          "model_id": {"type": "string", "minLength": 1},
+          "display_name": {"type": "string", "minLength": 1},
+          "route_id": {"type": ["string", "null"]},
+          "invocation_mode": {"const": "oauth"},
+          "adapter_version": {"type": "string", "minLength": 1},
+          "account_tier": {"type": ["string", "null"]},
+          "exposed_parameters": {"type": "object"},
+          "provider_managed_parameters": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {"properties": {"models": {"contains": {"properties": {"slot": {"const": "P1"}}, "required": ["slot"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"models": {"contains": {"properties": {"slot": {"const": "P2"}}, "required": ["slot"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"models": {"contains": {"properties": {"slot": {"const": "P3"}}, "required": ["slot"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"models": {"contains": {"properties": {"slot": {"const": "P4"}}, "required": ["slot"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"models": {"contains": {"properties": {"slot": {"const": "P5"}}, "required": ["slot"]}, "minContains": 1, "maxContains": 1}}}
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
