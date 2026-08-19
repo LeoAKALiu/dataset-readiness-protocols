@@ -1,9 +1,9 @@
-# Cluster A 计算字典：二维基础设施病害影像
+# Cluster A 计算字典：二维基础设施表面/结构病害影像
 
 ## 1. 适用范围
 
 本字典适用于二维 RGB 基础设施表面或结构病害的分类、检测与分割。每次评价仍
-须冻结具体应用范围；分类、检测和分割不能默认共用等级。
+须冻结具体应用范围；分类、检测和分割不得默认共用等级。
 
 当前优先操作化任务为多标签语义分割，候选共同语义包括：
 
@@ -11,20 +11,20 @@
 - `spalling`；
 - `corrosion_related_damage`。
 
-如果任务包含裂缝宽度、病害面积或实际尺寸测量，物理尺度成为硬门槛；仅做
+如果任务包含裂缝宽度、病害面积或物理尺寸测量，物理尺度成为必要性判据；仅做
 语义识别时，物理尺度作为覆盖与风险指标。
 
 ## 2. 分析单位
 
 | 单位 | 定义 |
 |---|---|
-| 原始样本 | 一张未经裁块扩增的原始影像及其标签 |
+| 原始样本 | 一张未经裁块增强的原始影像及其标签 |
 | 标签对象 | 连通病害区域、检测框或图级标签，按任务确定 |
 | 独立采集单元 ICU-A | `结构物/地点 × 检测批次 × 成像设备`；无法恢复全部字段时使用可证明的最小独立组合 |
 | 重复组 | 由精确哈希或冻结的近重复图算法形成的连通分量 |
 | 环境层 | 材料、结构类型、室内外、照明、湿润、距离、视角、设备等预定义层级 |
 
-同一视频、连拍序列、同一结构物的相邻裁块和同一原图派生块不能作为独立 ICU。
+同一视频、连拍序列、同一结构物的相邻裁块和同一原图派生块不得作为独立 ICU。
 
 ## 3. 必需输入
 
@@ -38,8 +38,8 @@
 
 任一关键输入缺失时，相应指标记为 `UNKNOWN`，不得自动记零。
 
-本字典继承总体协议的全部通用判据。C1.4 由数据清单、版本标识和内容哈希直接
-裁决，不另造数值指标；C1.3 与 C4.4 按任务是否要求实际尺度决定适用性。
+本字典沿用总体协议的全部通用判据。C1.4 由数据清单、版本标识和内容哈希直接
+裁决，不另造数值指标；C1.3 与 C4.4 按任务是否要求物理尺度决定适用性。
 
 ## 4. 通用计算规则
 
@@ -127,14 +127,14 @@ CAER_A=\frac{N_{audited\ images\ with\ at\ least\ one\ critical\ annotation\ def
 
 ### A-A2 病害对象漏标率
 
-需要独立金标或重复标注：
+需要独立金标准或重复标注：
 
 \[
 OMR_A=\frac{N_{gold\ objects\ absent\ from\ released\ annotation}}{N_{gold\ objects}}
 \]
 
 对象连接规则、最小可审计尺寸和争议区处理必须预先声明。输出逐类结果。无法建立
-金标时记为 `UNKNOWN`，可由其他等价证据路径替代。判据：C2.1。
+金标准时记为 `UNKNOWN`，可由其他等价证据路径替代。判据：C2.1。
 
 ### A-A3 边界不一致度
 
@@ -144,7 +144,7 @@ OMR_A=\frac{N_{gold\ objects\ absent\ from\ released\ annotation}}{N_{gold\ obje
 BD_A=1-\operatorname{IoU}(M_{release},M_{adjudicated})
 \]
 
-同时报告边界 F-score 或表面距离，以避免小目标 IoU 的尺度效应。按对象先计算再
+同时报告边界 F-score 或表面距离，以避免小目标 IoU 的尺度效应。先按对象计算再
 宏平均，不以所有像素池化替代。检测任务使用框 IoU；分类任务记为 `NA`。
 判据：C2.1。
 
@@ -154,8 +154,8 @@ BD_A=1-\operatorname{IoU}(M_{release},M_{adjudicated})
 LCR_A=\frac{N_{audited\ labels\ violating\ frozen\ rules}}{N_{audited\ labels}}
 \]
 
-规则示例：类别互斥冲突、掩膜超出影像、明显非结构表面被标为结构病害、实际尺寸
-超出应用范围且未标记。规则必须在看结果前冻结。判据：C2.2。
+规则示例：类别互斥冲突、掩膜超出影像、明显非结构表面被标为结构病害、物理尺寸
+超出应用范围且未标记。规则必须在获得计算结果前冻结。判据：C2.2。
 
 ### A-U1 ICU 可恢复率
 
@@ -180,7 +180,7 @@ EDR_A=\frac{N_{samples\ in\ exact\ duplicate\ groups\ of\ size>1}}{N_{samples}}
 NDR_A=\frac{N_{samples\ in\ confirmed\ near\ duplicate\ groups\ of\ size>1}}{N_{samples}}
 \]
 
-精确重复包含在单独结果中，不在解释时与近重复重复相加。输出按 ICU 内/跨 ICU
+精确重复包含在单独结果中，解释时不与近重复再次相加。输出按 ICU 内/跨 ICU
 分解。判据：C2.4b。
 
 ### A-D3 跨划分泄漏数
@@ -189,7 +189,7 @@ NDR_A=\frac{N_{samples\ in\ confirmed\ near\ duplicate\ groups\ of\ size>1}}{N_{
 Leak_A=N_{duplicate\ groups\ spanning\ train\ and\ validation/test}
 \]
 
-分别报告精确泄漏、近重复泄漏和同一采集序列泄漏。确认的精确泄漏属于硬失败；
+分别报告精确泄漏、近重复泄漏和同一采集序列泄漏。确认的精确泄漏属于关键失败；
 近重复与同序列泄漏的门槛待校准。判据：C2.4a、C2.4b。
 
 ### A-E1 重复折算有效样本数
@@ -234,8 +234,8 @@ Dom_A=\max_u p_u
 Coverage_{A,k}=\frac{N_{required\ levels\ observed\ with\ minimum\ evidence}}{N_{required\ levels}}
 \]
 
-逐轴报告材料、结构类型、照明、湿润、距离、视角、设备等覆盖；不得只报告宏平均
-掩盖关键轴缺失。判据：C3.1。
+逐轴报告材料、结构类型、照明、湿润、距离、视角、设备等覆盖；不得仅报告宏平均
+而掩盖关键轴缺失。判据：C3.1。
 
 ### A-C2 关键组合空洞率
 
@@ -288,7 +288,7 @@ ShortcutRatio_A=\frac{P_{bg}}{P_{full}+\epsilon}
 仅使用颜色直方图、频域、纹理或压缩统计量预测标签，报告宏指标及相对完整输入
 探针的比率。不同低级特征族分开输出，不合成为总分。判据：C4.1、C4.5。
 
-### A-R1 留一 ICU 保留率
+### A-R1 留一 ICU 保持率
 
 对每个可评 ICU 进行源内留一测试：
 
@@ -299,7 +299,7 @@ Retention_{A,u}=\frac{P_{heldout\ ICU=u}}{P_{source\ random\ reference}+\epsilon
 输出最小值、中位数、IQR 和逐 ICU 结果。不得把 ICU 当作模型随机种子。探针集合
 必须冻结。判据：C4.2。
 
-### A-R2 最差子群差距
+### A-R2 最差已见子群差距
 
 \[
 WorstGap_A=P_{macro}-\min_g P_g
@@ -310,7 +310,7 @@ WorstGap_A=P_{macro}-\min_g P_g
 
 ### A-P1 物理尺度完备率
 
-仅当应用范围要求实际尺寸时作为硬条件：
+仅当应用范围要求物理尺寸时作为必要条件：
 
 \[
 PSC_A=\frac{N_{samples\ with\ traceable\ physical\ scale}}{N_{applicable\ samples}}

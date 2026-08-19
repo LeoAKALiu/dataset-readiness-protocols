@@ -1,0 +1,41 @@
+family_key,canonical_family,release_or_alias,relation_to_family,separate_evaluation_unit,cluster,decision,evidence_or_required_probe
+sdnet2018,SDNET2018,SDNET / SDNET2018,alias,no,A,merge_alias,Use dataset DOI 10.15142/T3TD19; article DOI is 10.1016/j.dib.2018.11.015
+codebrim,CODEBRIM family,CODEBRIM,base_release,yes,A,retain_version,Zenodo 2620293
+codebrim,CODEBRIM family,SegCODEBRIM,label_enriched_derivative,yes,A,retain_version,Zenodo 10071534 explicitly states images came from CODEBRIM
+dacl,dacl bridge-damage dataset family,dacl1k,earlier_release,yes,A,retain_version,Primary lineage is reported; exact image overlap requires pHash/content hashes
+dacl,dacl bridge-damage dataset family,dacl10k,expanded_release,yes,A,retain_version,Zenodo 8360303 and official toolkit
+metu_concrete_crack,METU concrete-crack acquisition family,Concrete Crack Segmentation Dataset,original_image_release,yes,A,retain_version,Mendeley DOI 10.17632/jwsn7tfbrp.1
+metu_concrete_crack,METU concrete-crack acquisition family,Concrete Crack Images for Classification,patch_derivative_from_458_originals,yes,A,retain_version,Mendeley DOI 10.17632/5y9wdsg2zt.2
+cracktree,CrackTree family,CrackTree200 / CrackTree206,base_release,yes,A,retain_version,Canonical sample count/title conflict must be resolved before download
+cracktree,CrackTree family,CrackTree260,expanded_release,yes,A,retain_version,File hashes and added samples require Q3 comparison
+gaps,GAPs family,GAPs,base_release,yes,A,retain_version,Full road-surface acquisition
+gaps,GAPs family,GAPs384,annotated_subset,yes,A,retain_version,Do not count subset images as an independent acquisition family
+crack500,CRACK500,CRACK500,base_release,yes,A,retain_version,Official/project release
+crack500,CRACK500,noisy-mask derivative,third_party_label_derivative,yes,A,retain_version,Keep separate label version; do not add a family
+rdd,Road Damage Dataset family,RDD2018,release,yes,A,retain_version,Country and label schema differ across releases
+rdd,Road Damage Dataset family,RDD2019,release,yes,A,retain_version,Country and label schema differ across releases
+rdd,Road Damage Dataset family,RDD2020,mixed_real_and_augmented_release,yes,A,retain_version,Record synthetic/augmented content explicitly
+rdd,Road Damage Dataset family,RDD2022,multi_country_release,yes,A,retain_version,Do not collapse all releases into a single sample-count field
+lcw,Labeled Cracks in the Wild,LCW v1,initial_release,yes,A,retain_version,DataCite 10.7294/16624672
+lcw,Labeled Cracks in the Wild,LCW v2,metadata_or_file_revision,yes,A,retain_version,Compare manifests before declaring content-equivalent
+tbbr,Thermal Bridges on Building Rooftops,TBBR raw,raw_acquisition_release,yes,B,retain_version,Zenodo 7360996
+tbbr,Thermal Bridges on Building Rooftops,TBBR annotated,annotation_release,yes,B,retain_version,Zenodo 4767771
+flir_adas,FLIR ADAS,FLIR original,base_release_unaligned_rgb_t,yes,B,retain_version,Original visible/thermal views are not pixel aligned
+flir_adas,FLIR ADAS,community aligned FLIR,third_party_alignment_derivative,yes,B,retain_version,Provenance and transformation parameters required
+kaist_multispectral,KAIST Multispectral,original annotations,base_release,yes,B,retain_version,Official benchmark release
+kaist_multispectral,KAIST Multispectral,cleaned/reannotated variants,third_party_label_derivatives,yes,B,retain_version,Each annotation variant needs a distinct manifest
+rohbau3d,Rohbau3D,Rohbau3D geometric/features release,base_release,yes,C,retain_version,Scientific Data DOI 10.1038/s41597-025-05827-7
+rohbau3d,Rohbau3D,Rohbau3D-Semantics,label_enriched_current_release,yes,C,retain_version,Same family; semantic/instance arrays add a new task unit
+urb3dcd,Urb3DCD,Urb3DCD V1,release,yes,C,retain_version,Synthetic ALS change-detection release
+urb3dcd,Urb3DCD,Urb3DCD V2,expanded_release,yes,C,retain_version,Keep separate release manifest
+whu_building,WHU Building Dataset family,aerial Christchurch subdataset,subdataset,yes,D,retain_version,8188 tiles and about 220k buildings describe this component only
+whu_building,WHU Building Dataset family,satellite subdatasets,subdatasets,yes,D,retain_version,Do not assign umbrella area to each component
+whu_building,WHU Building Dataset family,building change-detection subdataset,task_subdataset,yes,D,retain_version,Separate paired-time task unit
+whu_mix,WHU-Mix building dataset,WHU-Mix raster,base_release,yes,D,retain_version,Official WHU portal
+whu_mix,WHU-Mix building dataset,WHU-Mix vector,edited_label_derivative,yes,D,retain_version,64k tiles/754k buildings; COCO polygon labels
+cityscapes,Cityscapes,Cityscapes 2D,fine_and_coarse_2d_release,yes,D,retain_version,2D segmentation tasks
+cityscapes,Cityscapes,Cityscapes 3D,task_extension,yes,D,retain_version,Do not count as a new acquisition family
+gtsrb_gtsdb,German Traffic Sign benchmarks,GTSRB,classification_benchmark,yes,D,retain_version,Related acquisition program but distinct task package
+gtsrb_gtsdb,German Traffic Sign benchmarks,GTSDB,detection_benchmark,yes,D,retain_version,Related acquisition program but distinct task package
+crackseg9k,CrackSeg9k,CrackSeg9k,aggregate_benchmark,yes,A,retain_but_flag_composite,Derived from ten named source datasets; no new acquisition-family evidence
+structdamage,StructDamage,StructDamage,aggregate_benchmark,yes,A,retain_but_flag_composite,Derived from 32 public datasets; source overlap must be measured

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LeoAKALiu/dataset-readiness-protocols/main/AGENT_EVALUATION/schemas/protocol-lock.schema.json",
+  "title": "Formal DRRL/ERL Agent protocol lock",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_lock_id",
+    "repository_commit",
+    "registry_sha256",
+    "alias_map_sha256",
+    "panel_manifest_sha256",
+    "selection_manifest_sha256",
+    "files",
+    "stage0_excluded",
+    "created_at"
+  ],
+  "properties": {
+    "protocol_lock_id": {"type": "string", "minLength": 1},
+    "repository_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "registry_sha256": {"$ref": "#/$defs/sha256"},
+    "alias_map_sha256": {"$ref": "#/$defs/sha256"},
+    "panel_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "selection_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "role"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {
+            "enum": ["protocol", "dictionary", "prompt", "schema", "normalizer", "metric_runner", "rule_engine", "analysis_plan", "completion_spec", "other"]
+          }
+        }
+      }
+    },
+    "stage0_excluded": {"const": true},
+    "github_tag_or_release": {"type": ["string", "null"]},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "protocol"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "dictionary"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "prompt"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "schema"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "normalizer"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "metric_runner"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "rule_engine"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "analysis_plan"}}, "required": ["role"]}, "minContains": 1}}},
+    {"properties": {"files": {"contains": {"properties": {"role": {"const": "completion_spec"}}, "required": ["role"]}, "minContains": 1}}}
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

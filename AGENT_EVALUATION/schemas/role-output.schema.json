@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LeoAKALiu/dataset-readiness-protocols/main/AGENT_EVALUATION/schemas/role-output.schema.json",
+  "title": "DRRL/ERL Agent role output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_lock_id",
+    "run_id",
+    "replicate_id",
+    "task_id",
+    "role",
+    "model_slot",
+    "prompt_sha256",
+    "status",
+    "evidence_packets",
+    "started_at",
+    "finished_at"
+  ],
+  "properties": {
+    "protocol_lock_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "replicate_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "role": {"enum": ["RETRIEVER", "VERIFIER", "THIRD_REVIEWER"]},
+    "model_slot": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
+    "prompt_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "status": {
+      "enum": ["COMPLETE", "PENDING_RETRY", "RUN_INCOMPLETE", "HARNESS_INCOMPATIBLE"]
+    },
+    "evidence_packets": {
+      "type": "array",
+      "items": {"$ref": "evidence-packet.schema.json"}
+    },
+    "search_rounds_completed": {"type": "integer", "minimum": 0},
+    "saturation_reached": {"type": "boolean"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "finished_at": {"type": ["string", "null"], "format": "date-time"},
+    "operational_summary_ref": {"type": ["string", "null"]}
+  }
+}
