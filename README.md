@@ -27,6 +27,14 @@ ERL/
     ├── CLUSTER_B_RGBT_CALCULATION_DICTIONARY.md
     ├── CLUSTER_C_3D_POINT_CLOUD_CALCULATION_DICTIONARY.md
     └── CLUSTER_D_URBAN_ASSET_CALCULATION_DICTIONARY.md
+
+evidence_maps/
+└── 2026-08-19-deepresearch-merge/
+    ├── MERGE_REPORT.md
+    ├── CANONICAL_FAMILY_REGISTRY.csv
+    ├── ALIAS_VERSION_MAP.csv
+    ├── CONFLICT_VERIFICATION.md
+    └── build_registry.py
 ```
 
 ## Protocols
@@ -48,6 +56,13 @@ ERL/
 - [Cluster B calculation dictionary](ERL/calculation_dictionaries/CLUSTER_B_RGBT_CALCULATION_DICTIONARY.md)
 - [Cluster C calculation dictionary](ERL/calculation_dictionaries/CLUSTER_C_3D_POINT_CLOUD_CALCULATION_DICTIONARY.md)
 - [Cluster D calculation dictionary](ERL/calculation_dictionaries/CLUSTER_D_URBAN_ASSET_CALCULATION_DICTIONARY.md)
+
+### Dataset evidence maps
+
+- [2026-08-19 four-source DeepResearch merge](evidence_maps/2026-08-19-deepresearch-merge/MERGE_REPORT.md)
+- [Canonical dataset-family registry](evidence_maps/2026-08-19-deepresearch-merge/CANONICAL_FAMILY_REGISTRY.csv)
+- [Alias and version map](evidence_maps/2026-08-19-deepresearch-merge/ALIAS_VERSION_MAP.csv)
+- [Conflict verification record](evidence_maps/2026-08-19-deepresearch-merge/CONFLICT_VERIFICATION.md)
 
 ## Cluster definitions
 
