@@ -212,9 +212,9 @@ Q3—Q0 表示证据的直接性和可复核性，不是一套适用于所有字
 
 ### 8.2 Agent 证据状态映射
 
-采用多 Agent 证据流水线时，其 `ACCEPTED`、`REJECTED`、`NOT_EVIDENCED`、
+采用多 Agent 证据评价流程时，其 `ACCEPTED`、`REJECTED`、`NOT_EVIDENCED`、
 `NOT_APPLICABLE`、`ACCESS_BLOCKED` 和 `UNRESOLVED_AFTER_REVIEW` 是证据处理状态，
-不是新增 DRRL 判据状态。确定性规则引擎按下列原则映射：
+不是新增 DRRL 判据状态。确定性判定程序按下列原则映射：
 
 - `ACCEPTED` 证据根据内容支持既有判据通过或失败；
 - `REJECTED` 仅淘汰候选证据，不直接等于 `FAIL`；
@@ -368,7 +368,7 @@ optional_erl_reference:
 5. 执行标准化最小复用事务。
 6. 记录命令、日志、耗时、阻塞、修复和未文档化决策。
 7. 按证据规则裁决各项判据状态。
-8. 依据累积硬门推导已验证 DRRL。
+8. 依据累积必要条件推导已验证 DRRL。
 9. 输出证据完备度、主要阻塞项、摩擦画像和资源负担。
 10. 如存在独立 ERL 结果，仅通过可选接口进行引用。
 
