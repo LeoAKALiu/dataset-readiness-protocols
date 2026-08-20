@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "select_audit_families.py"
 REPO = ROOT.parent
 REGISTRY = (
-    REPO / "evidence_maps/2026-08-19-deepresearch-merge/CANONICAL_FAMILY_REGISTRY.csv"
+    REPO / "evidence_maps/CANONICAL_FAMILY_REGISTRY.csv"
 )
-ALIAS_MAP = REPO / "evidence_maps/2026-08-19-deepresearch-merge/ALIAS_VERSION_MAP.csv"
+ALIAS_MAP = REPO / "evidence_maps/ALIAS_VERSION_MAP.csv"
 
 SPEC = importlib.util.spec_from_file_location("select_audit_families", SCRIPT)
 MODULE = importlib.util.module_from_spec(SPEC)

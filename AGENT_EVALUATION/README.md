@@ -33,8 +33,8 @@ Agent 如何检索和核验证据、确定性程序如何计算指标和生成�
 
 ```bash
 python3 AGENT_EVALUATION/scripts/select_audit_families.py \
-  --registry evidence_maps/2026-08-19-deepresearch-merge/CANONICAL_FAMILY_REGISTRY.csv \
-  --alias-map evidence_maps/2026-08-19-deepresearch-merge/ALIAS_VERSION_MAP.csv \
+  --registry evidence_maps/CANONICAL_FAMILY_REGISTRY.csv \
+  --alias-map evidence_maps/ALIAS_VERSION_MAP.csv \
   --output '<selection-manifest.json>'
 ```
 
