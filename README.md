@@ -44,6 +44,9 @@ AGENT_EVALUATION/
 ├── PREREGISTRATION_AND_COMPLETION.md
 ├── schemas/
 └── scripts/
+
+EXPERIMENT_PROTOCOL/
+└── INTEGRATED_STUDY_PROTOCOL.md
 ```
 
 ## Protocols
@@ -81,6 +84,10 @@ AGENT_EVALUATION/
 - [Prompt and evidence contract](AGENT_EVALUATION/PROMPT_AND_EVIDENCE_CONTRACT.md)
 - [Audit and analysis plan](AGENT_EVALUATION/AUDIT_AND_ANALYSIS_PLAN.md)
 - [Preregistration and completion specification](AGENT_EVALUATION/PREREGISTRATION_AND_COMPLETION.md)
+
+### Integrated study protocol
+
+- [Integrated DRRL/ERL study protocol](EXPERIMENT_PROTOCOL/INTEGRATED_STUDY_PROTOCOL.md)
 
 ## Cluster definitions
 
